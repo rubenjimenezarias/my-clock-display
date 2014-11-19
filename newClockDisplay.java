@@ -21,7 +21,7 @@ public class newClockDisplay
         // initialise instance variables
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
-        hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
+        updateDisplay();
     }
     
       /**
@@ -34,7 +34,7 @@ public class newClockDisplay
        minutes = new NumberDisplay(60);
        hours.setValue(newHours);
        minutes.setValue(newMinutes);
-       hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
+       updateDisplay();
     }
 
     /**
@@ -44,7 +44,7 @@ public class newClockDisplay
     {
         hours.setValue(newHours);
         minutes.setValue(newMinutes);
-        hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
+        updateDisplay();
     }
     
     /**
@@ -60,5 +60,16 @@ public class newClockDisplay
      */
     public void timeTick(){
       minutes.increment();
-    }  
+      if (minutes.getValue() == 0){
+          hours.increment(); 
+        }
+      updateDisplay();
+    }
+    /**
+     * Actualiza el atributo display
+     */
+     private void updateDisplay()
+     {
+         hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
+     }
 }
