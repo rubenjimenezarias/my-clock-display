@@ -12,7 +12,7 @@ public class newClockDisplay
     private NumberDisplay minutes;
     // Un objeto String que nos guarda la hora con 5 caracteres
     private String hora5c;
-
+  
     /**
      * Constructor for objects of class ClockDisplay
      */
@@ -68,8 +68,20 @@ public class newClockDisplay
     /**
      * Actualiza el atributo display
      */
-     private void updateDisplay()
-     {
-         hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
-     }
+     private void updateDisplay(){
+         if(hours.getValue() > 12 && hours.getValue() > 0){
+             int valorHoraam = hours.getValue() - 12;
+             hora5c = valorHoraam + ":" + minutes.getDisplayValue() + "pm";
+         }
+         else if (hours.getValue() == 12){
+             hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "pm";
+            }
+         else if (hours.getValue() == 0){
+             int valorHoraam = hours.getValue() + 12;
+             hora5c = valorHoraam + ":" + minutes.getDisplayValue() + "am";
+            }
+         else{
+             hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "am";
+         }
+    }
 }
