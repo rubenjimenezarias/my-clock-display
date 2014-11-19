@@ -6,9 +6,11 @@
  */
 public class newClockDisplay
 {
-    // instance variables - replace the example below with your own
+    // Un objeto NumberDisplay que nos guarda la hora
     private NumberDisplay hours;
+    // Un objeto NumberDisplay que nos guarda los minutos
     private NumberDisplay minutes;
+    // Un objeto String que nos guarda la hora con 5 caracteres
     private String hora5c;
 
     /**
@@ -40,18 +42,9 @@ public class newClockDisplay
      */
     public void setTime(int newHours, int newMinutes)
     {
-        if (newHours < 24 && newHours >= 0){
-            hours.setValue(newHours);
-        }
-        else {
-            System.out.println("La hora debe de ser entre 0 y 23");
-        }
-        if (newMinutes < 60 && newMinutes >= 0){
-            minutes.setValue(newMinutes);
-        }
-        else {
-            System.out.println("Los minutos debe de ser entre 0 y 59");
-        }
+        hours.setValue(newHours);
+        minutes.setValue(newMinutes);
+        hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
     }
     
     /**
