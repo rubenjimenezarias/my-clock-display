@@ -12,6 +12,10 @@ public class newClockDisplay
     private NumberDisplay minutes;
     // Un objeto String que nos guarda la hora con 5 caracteres
     private String hora5c;
+    
+    private NumberDisplay day, month;
+    private int year;
+  
   
     /**
      * Constructor for objects of class ClockDisplay
@@ -27,23 +31,32 @@ public class newClockDisplay
       /**
      * Constructor for objects of class ClockDisplay
      */
-    public newClockDisplay(int newHours, int newMinutes)
+    public newClockDisplay(int newHours, int newMinutes, int newDay, int newMonth, int newYear)
     {
         // initialise instance variables
        hours = new NumberDisplay(24);
        minutes = new NumberDisplay(60);
        hours.setValue(newHours);
        minutes.setValue(newMinutes);
+       day = new NumberDisplay(31);
+       month = new NumberDisplay(13);
+       year = newYear;
+       day.setValue(newDay);
+       month.setValue(newMonth);
+       year = newYear;
        updateDisplay();
     }
 
     /**
      * Fija unas horas y unos minutos dados
      */
-    public void setTime(int newHours, int newMinutes)
+    public void setTime(int newHours, int newMinutes, int newDay, int newMonth, int newYear)
     {
         hours.setValue(newHours);
         minutes.setValue(newMinutes);
+        day.setValue(newDay);
+        month.setValue(newMonth);
+        year = newYear;
         updateDisplay();
     }
     
@@ -68,20 +81,26 @@ public class newClockDisplay
     /**
      * Actualiza el atributo display
      */
-     private void updateDisplay(){
+     private void updateDisplay()  {
+         String fecha = " " + day.getDisplayValue() + "/" + month.getDisplayValue() + "/" + year;
          if(hours.getValue() > 12 && hours.getValue() > 0){
              int valorHoraam = hours.getValue() - 12;
-             hora5c = valorHoraam + ":" + minutes.getDisplayValue() + "pm";
+             if ( valorHoraam < 10 ){
+                 hora5c = "0" + valorHoraam + ":" + minutes.getDisplayValue() + "pm" + fecha;
+             }
+             else {
+                 hora5c = valorHoraam + ":" + minutes.getDisplayValue() + "pm" + fecha;
+             }
          }
          else if (hours.getValue() == 12){
-             hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "pm";
-            }
+             hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "pm" + fecha;
+         }
          else if (hours.getValue() == 0){
              int valorHoraam = hours.getValue() + 12;
-             hora5c = valorHoraam + ":" + minutes.getDisplayValue() + "am";
-            }
+             hora5c = valorHoraam + ":" + minutes.getDisplayValue() + "am" + fecha;
+         }
          else{
-             hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "am";
+             hora5c = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "am" + fecha;
          }
     }
 }
