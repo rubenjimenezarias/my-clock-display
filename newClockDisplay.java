@@ -74,8 +74,19 @@ public class newClockDisplay
     public void timeTick(){
       minutes.increment();
       if (minutes.getValue() == 0){
-          hours.increment(); 
-        }
+          hours.increment();
+          if (hours.getValue() == 0 && minutes.getValue() == 0) {
+          day.increment();
+                     if (day.getValue() == 0) {
+              day.increment();
+              month.increment();
+                  if (month.getValue() == 0) {
+                  month.increment();
+                  year = year + 1;
+                  }
+              }
+         }
+      }
       updateDisplay();
     }
     /**
