@@ -13,8 +13,7 @@ public class newClockDisplay
     // Un objeto String que nos guarda la hora con 5 caracteres
     private String hora5c;
     
-    private NumberDisplay day, month;
-    private int year;
+    private NumberDisplay day, month, year;
   
   
     /**
@@ -25,6 +24,9 @@ public class newClockDisplay
         // initialise instance variables
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        day = new NumberDisplay(31);
+        month = new NumberDisplay(13);
+        year = new NumberDisplay(100);
         updateDisplay();
     }
     
@@ -40,10 +42,10 @@ public class newClockDisplay
        minutes.setValue(newMinutes);
        day = new NumberDisplay(31);
        month = new NumberDisplay(13);
-       year = newYear;
+       year = new NumberDisplay(100);
+       year.setValue (newYear);
        day.setValue(newDay);
        month.setValue(newMonth);
-       year = newYear;
        updateDisplay();
     }
 
@@ -56,7 +58,7 @@ public class newClockDisplay
         minutes.setValue(newMinutes);
         day.setValue(newDay);
         month.setValue(newMonth);
-        year = newYear;
+        year.setValue(newYear);
         updateDisplay();
     }
     
@@ -82,7 +84,7 @@ public class newClockDisplay
               month.increment();
                   if (month.getValue() == 0) {
                   month.increment();
-                  year = year + 1;
+                  year.increment();
                   }
               }
          }
@@ -93,7 +95,7 @@ public class newClockDisplay
      * Actualiza el atributo display
      */
      private void updateDisplay()  {
-         String fecha = " " + day.getDisplayValue() + "/" + month.getDisplayValue() + "/" + year;
+         String fecha = " " + day.getDisplayValue() + "/" + month.getDisplayValue() + "/" + year.getDisplayValue();
          if(hours.getValue() > 12 && hours.getValue() > 0){
              int valorHoraam = hours.getValue() - 12;
              if ( valorHoraam < 10 ){
